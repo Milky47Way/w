@@ -1,0 +1,49 @@
+<div class="card shadow-lg p-4 mb-5" style="border-radius: 25px; background-color: rgba(255, 255, 255, 0.95); border: 2px solid #f7b6d6;">
+    <h4 class="mb-4" style="color: #d18ab2; font-weight: bold;">Залишити коментар 🐾</h4>
+    
+    <form action="{% url 'task:task-detail' task.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in comment_form %}
+            <div class="mb-3">
+                <label class="form-label" style="color: #d182a9; font-weight: 500;">
+                    {{ field.label }}
+                </label>
+                
+                <div class="comment-input-wrapper">
+                    {{ field }}
+                </div>
+
+                {% if field.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn pink-btn glow-link w-100 py-2 mt-2" style="font-size: 1.1rem; border-radius: 15px;">
+            Надіслати відгук
+        </button>
+    </form>
+</div>
+
+<style>
+    /* Додаткові стилі для полів форми всередині цієї картки */
+    .comment-input-wrapper input, 
+    .comment-input-wrapper textarea {
+        width: 100%;
+        border: 1px solid #f7b6d6 !important;
+        border-radius: 12px !important;
+        padding: 10px 15px !important;
+        background-color: #fff !important;
+        transition: all 0.3s ease;
+    }
+
+    .comment-input-wrapper input:focus, 
+    .comment-input-wrapper textarea:focus {
+        box-shadow: 0 0 10px rgba(247, 182, 214, 0.4) !important;
+        outline: none !important;
+        background-color: #fffafc !important;
+    }
+</style>

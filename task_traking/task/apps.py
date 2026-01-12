@@ -1,6 +1,7 @@
 from django.apps import AppConfig
-
-
-class TaskConfig(AppConfig):
+class TasksConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'task'
+
+
+import time
